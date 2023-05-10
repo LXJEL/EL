@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      body {
+      background-image: url("../static/img/logo.png");
+      background-repeat:no-repeat;
+      background-size:50%;
+      background-position:750px 55px;
+      }
+
+    .detail{
+    background-color:rgba(192,192,192,0.5);
+    margin:50px 150px;
+    font-size:18px;
+    width:1200px;
+    height:470px;
+    padding-top:10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #BDBDBD;
+    }
+    .det{
+    display:block;
+    text-align:center;
+    }
+    }
+
+    </style>
+  <head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>帮助</title>
+    <link rel="stylesheet" href="{% static 'css/help.css' %}">
+  </head>
+
+  <header>
+
+      <nav>
+        <ul>
+
+          <li><a href="../home">首页</a></li>
+
+          <li>
+            <a href="#">文献库</a>
+            <ul>
+              <li>
+                <a href="../page1/"><button>文献一</button></a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="../about_us/">关于我们</a></li>
+
+
+          <li><a href="../help/">帮助</a></li>
+        </ul>
+      </nav>
+
+      <div class="logo">
+        <h1>HZAU知识工程与元学习团队</h1>
+      </div>
+    </header>
+    <form>
+
+        <body>
+            <div class="container">
+                <form>
+
+                  <label for="select-page">CONTENT</label>
+
+                  <select id="select-page" name="page">
+                    <option value="">请选择</option>
+                    <option value="">注册账号相关流程指引</option>
+                    <option value="">修改账号相关流程指引</option>
+                    <option value="">账号问题</option>
+                    <option value="">相关教学&使用指南</option>
+                    <option value="">常见问题</option>
+                  </select>
+
+                </form>
+              </div>
+
+            <div class="detail">
+                <div id = "det"></div>
+
+            </div>
+        </body>
+
+    </form>
+
+</html>

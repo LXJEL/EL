@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>知识图谱智能更新</title>
+  <link rel="stylesheet" href="../static/css/visualstyles.css">
+  <script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+
+  <!-- 引入 ECharts -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.js"></script>
+</head>
+
+<body>
+  {% load static %}
+  <!--头榜内容-->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="../home">首页</a></li>
+        <li>
+          <a href="#">文献库</a>
+          <ul>
+            <a href="page1"><button>文献一</button></a>
+          </ul>
+        </li>
+        <li><a href="../about_us/">关于我们</a></li>
+        <li><a href="../help/">帮助</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <h1>HZAU知识工程与元学习团队</h1>
+    </div>
+  </header>
+  <img src="../static/img/logo.png" alt="Logo">
+  <div class="container">
+
+    <form>
+      <div id="menu">
+        <a>
+
+          <link rel="stylesheet" href="../static/css/font-awesome.css  ">
+          <div id="menu-title" class="fa fa-gear"> 更新预设置</div>
+          <div id="line"></div>
+
+          <div class="form-group">
+            <label id="epoch" for="input-epoch">更新节点</label>
+            <input type="text" class="form-control" id="input-epoch" runat="server" placeholder="0">
+          </div>
+
+          <div class="form-group">
+            <label id="timeout" for="input-timeout">更新超时（ms）</label>
+            <input type="text" class="form-control" id="input-timeout" placeholder="300000">
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-container">
+              自动刷新
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            <button type="button" id="play-btn" onclick="renew()">更新</button>
+          </div>
+        </a>
+      </div>
+    </form>
+    <!-- <script src="{% static 'js/visual.js' %}"></script> -->
+    <form>
+      <div id="main"></div>
+      {% csrf_token %}
+      <script>
+        number = 10
+        function renew() {
+          number = document.getElementById('input-epoch').value;
+          console.log("输入框的值是" + number);
+          (() => {
+          var getKGname = "YAGO";
+          var knowledgegraph = {};
+          console.log("全局变量的值是" + number);
+          $.ajax({
+            async: false,
+            type: "POST",
+            url: '/getKG/',
+            data: {
+              'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+              "KG_id": getKGname,
+              "number": number
+            }, success: function (data) {
+              knowledgegraph = data;
+            }, error: function (data) {
+              console.log("访问失败！")
+            }
+          });
+          var obj = eval('(' + knowledgegraph + ')');
+          // 初始化图表
+          const chart = echarts.init(document.getElementById('main'));
+
+          // 节点数据
+          const nodes = [];
+          for (const i in obj['nodes']) {
+            nodes.push({ id: obj['nodes'][i]['id'].toString(), name: obj['nodes'][i]['properties']['name'], symbolSize: 40, draggable: true })
+          }
+
+          // 边数据
+          const links = [];
+          for (const i in obj['links']) {
+            links.push({
+              source: obj['links'][i]['start_id'].toString(),
+              target: obj['links'][i]['target_id'].toString(),
+              rel: obj['links'][i]['relationship_type']
+            })
+          }
+
+          // 构造数据
+          const graph = {
+            nodes: nodes,
+            links: links
+          };
+
+          // 配置项
+          const option = {
+
+            tooltip: {
+              trigger: 'item',
+              formatter: '{b}'
+            },
+            series: [
+              {
+                type: 'graph',
+                layout: 'force',
+                data: graph.nodes,
+                links: graph.links,
+                roam: true,
+                label: {
+                  normal: {
+                    show: true
+                  }
+                },
+                lineStyle: {
+                  normal: {
+                    color: '#4b565b',
+                    width: 1,
+                    type: 'solid'
+                  }
+                },
+                edgeSymbol: ['none', 'triangle'],
+                edgeSymbolSize: [5, 8],
+                edgeLabel: {
+                  normal: {
+                    show: true,
+                    formatter: function (x) {
+                      return x.data.rel
+                    },
+                    textStyle: {
+                      fontSize: 8,
+                      color: '#4b565b'
+                    }
+                  }
+                },
+                force: {
+                  repulsion: 1000,
+                  edgeLength: 150
+                },
+                draggable: true // 开启节点拖拽功能
+              }
+            ]
+          };
+          // 渲染图表
+          chart.setOption(option);
+        })()
+        }
+        (() => {
+          var getKGname = "YAGO";
+          var knowledgegraph = {};
+          console.log("全局变量的值是" + number);
+          $.ajax({
+            async: false,
+            type: "POST",
+            url: '/getKG/',
+            data: {
+              'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+              "KG_id": getKGname,
+              "number": number
+            }, success: function (data) {
+              knowledgegraph = data;
+            }, error: function (data) {
+              console.log("访问失败！")
+            }
+          });
+          var obj = eval('(' + knowledgegraph + ')');
+          // 初始化图表
+          const chart = echarts.init(document.getElementById('main'));
+
+          // 节点数据
+          const nodes = [];
+          for (const i in obj['nodes']) {
+            nodes.push({ id: obj['nodes'][i]['id'].toString(), name: obj['nodes'][i]['properties']['name'], symbolSize: 40, draggable: true })
+          }
+
+          // 边数据
+          const links = [];
+          for (const i in obj['links']) {
+            links.push({
+              source: obj['links'][i]['start_id'].toString(),
+              target: obj['links'][i]['target_id'].toString(),
+              rel: obj['links'][i]['relationship_type']
+            })
+          }
+
+          // 构造数据
+          const graph = {
+            nodes: nodes,
+            links: links
+          };
+
+          // 配置项
+          const option = {
+
+            tooltip: {
+              trigger: 'item',
+              formatter: '{b}'
+            },
+            series: [
+              {
+                type: 'graph',
+                layout: 'force',
+                data: graph.nodes,
+                links: graph.links,
+                roam: true,
+                label: {
+                  normal: {
+                    show: true
+                  }
+                },
+                lineStyle: {
+                  normal: {
+                    color: '#4b565b',
+                    width: 1,
+                    type: 'solid'
+                  }
+                },
+                edgeSymbol: ['none', 'triangle'],
+                edgeSymbolSize: [5, 8],
+                edgeLabel: {
+                  normal: {
+                    show: true,
+                    formatter: function (x) {
+                      return x.data.rel
+                    },
+                    textStyle: {
+                      fontSize: 8,
+                      color: '#4b565b'
+                    }
+                  }
+                },
+                force: {
+                  repulsion: 1000,
+                  edgeLength: 150
+                },
+                draggable: true // 开启节点拖拽功能
+              }
+            ]
+          };
+          // 渲染图表
+          chart.setOption(option);
+        })()
+      </script>
+    </form>
+  </div>
+</body>
+
+</html>

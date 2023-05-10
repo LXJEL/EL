@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Knowledge Graph Visualization</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homestyles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li>
+                    <a href="#">Visualization</a>
+                    <ul>
+                        <a href="page1"><button>文献一</button></a>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="logo-container">
+            <img src="{% static 'img/logo.png' %}" alt="logo">
+        </div>
+    </header>
+    <main>
+        <h1>Knowledge Graph Visualization</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="entity">Entity:</label>
+            <input type="text" id="entity" name="entity">
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+</html>

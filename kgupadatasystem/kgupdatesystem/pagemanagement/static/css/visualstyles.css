@@ -1,0 +1,339 @@
+
+header {
+	background-color: #333;
+	color: #fff;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+nav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px 50px;
+  text-decoration: none;
+  
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+nav li ul {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+nav li:hover > ul {
+  display: block;
+}
+
+nav li ul li {
+  float: none;
+}
+
+nav li ul li a {
+  padding: 10px 30px;
+  background-color: #444;
+}
+
+nav li ul li a:hover {
+  background-color: #333;
+  
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+.logo h1 {
+	margin: 0;
+	font-size: 14px;
+	padding: 10px 20px;
+}
+
+img {
+    width: 440px;
+    height: 70px;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+#main {
+  width: 80%;
+  height: 700px;
+  float: left;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+#menu {
+  width: 20%;
+  height: 700px;
+  float: right;
+  border-radius: 5px;
+  background-color: #6e6e6e;
+}
+
+#menu-title{
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.form-group {
+  margin-top: 8%;
+  
+}
+.form-group #epoch {
+  display: block;
+  margin-bottom: 0.3rem;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: 55%;
+  color: #ffffff;
+  font-size: 16px;
+}
+.form-group #timeout {
+  display: block;
+  margin-bottom: 0.3rem;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: 38%;
+  color: #ffffff;
+  font-size: 16px;
+}
+.form-control {
+  display: block;
+  width: 60%;
+  height: 22px;
+  margin-left: auto;
+  margin-right: 20%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* 样式化的复选框容器 */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 28px;
+  margin-top: 5px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: 40%;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+}
+
+/* 自定义复选框的外观 */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 自定义复选框的外观 */
+.checkmark {
+  position: absolute;
+  margin-left: -53%;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* 激活复选框时的标记 */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* 复选框的标记 */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* 复选框被选中时标记的样式 */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* 复选框的标记样式 */
+.checkbox-container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+#line {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border-radius: 50px;
+  border-top: 2px solid  #d4d4d4;
+}
+
+.container {
+    width: 85%;
+    height: 700px;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #e9e9e9;
+    border-radius: 0px;
+    box-shadow: 0px 0px 10px #BDBDBD;
+}
+
+form {
+  margin-top: 0px;
+}
+
+#download-btn {
+  position: relative;
+  width: 20px;
+  margin-top: 0px;
+  margin-right: 0px;
+  float: right;
+  z-index: 999;
+  background-color: white;
+  padding: 13px;
+  border: 1px solid lightgray;
+  border-radius: 0px;
+  
+}
+#download-btn:link {
+  color:black;
+  text-decoration:none;
+}
+#download-btn:visited {
+  color:black;
+}
+#download-btn:hover {
+  color:lightblue;
+  text-decoration:none;
+}
+#download-btn:active {
+  color:rgb(83, 184, 247);
+  text-decoration:none;
+}
+
+#search-form {
+  position: relative;
+  width: 300px;
+  margin-top: 0px;
+  margin-right: 0px;
+  float: right;
+  z-index: 999;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 0px;
+}
+#search-form input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+#search-form input[type="submit"] {
+  padding: 5px;
+  background-color: lightblue;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#play-btn {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  margin-top: 10%;
+  float: center;
+  text-align: center;
+  z-index: 999;
+  color:white;
+  text-emphasis-color: white;
+  background-color: green;
+  padding: 10px;
+  border: 1px solid green;
+  border-radius: 10px;
+  
+}
+#play-btn:hover {
+  color:white;
+  background-color: rgb(0, 165, 0);
+  border: 1px solid rgb(0, 165, 0);
+  text-decoration:none;
+}
+#play-btn:active {
+  color:white;
+  background-color: rgb(0, 82, 0);
+  border: 1px solid rgb(0, 82, 0);
+}
+
+#rotate-btn {
+  position: relative;
+  width: 46px;
+  height: 49px;
+  margin-top: 0px;
+  margin-right: 0px;
+  float: right;
+  z-index: 999;
+  color:black;
+  background-color: white;
+  padding: 13px;
+  border: 1px solid lightgray;
+  border-radius: 0px;
+  
+}
+#rotate-btn:hover {
+  color:lightblue;
+  text-decoration:none;
+}
+#rotate-btn:active {
+  color:rgb(83, 184, 247);
+}
