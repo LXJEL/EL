@@ -1,4 +1,4 @@
-# EL
+# 知识图谱可视化代码
 # 使用方法
 在Pytorch的terminal中输入
 ```
